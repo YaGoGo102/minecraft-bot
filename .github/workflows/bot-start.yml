@@ -1,6 +1,5 @@
 name: Start Minecraft Bot
 
-# push またはスケジュールで実行
 on:
   push:
     branches: [ main ]
@@ -17,6 +16,7 @@ jobs:
       BOT_NAME: ${{ secrets.BOT_NAME }}
       SERVER_VERSION: ${{ secrets.SERVER_VERSION }}
       DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      WEB_PORT: 3000
 
     steps:
       - name: リポジトリをチェックアウト
@@ -31,5 +31,4 @@ jobs:
         run: npm install
 
       - name: Bot を起動
-        run: |
-          node src/bot.js
+        run: npm start
