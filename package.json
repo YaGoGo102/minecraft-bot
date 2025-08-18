@@ -1,0 +1,14 @@
+{
+  "name": "minecraft-bot",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/bot.js",
+  "scripts": {
+    "start": "node src/bot.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "mineflayer": "^4.16.0",
+    "undici": "^6.19.0"
+  }
+}
