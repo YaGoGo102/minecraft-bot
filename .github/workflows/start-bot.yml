@@ -3,8 +3,8 @@ name: Start Minecraft Bot
 on:
   push:
     branches:
-      - main   # main ブランチにPushされたとき
-  workflow_dispatch:  # 手動で起動も可能
+      - main
+  workflow_dispatch:
 
 jobs:
   start-bot:
@@ -23,4 +23,8 @@ jobs:
         run: npm install
 
       - name: Start Bot
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          BOT_USERNAME: ${{ secrets.BOT_USERNAME }}
+          BOT_PASSWORD: ${{ secrets.BOT_PASSWORD }}
         run: node src/bot.js
