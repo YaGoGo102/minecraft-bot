@@ -24,6 +24,4 @@ jobs:
 
       - name: Start Bot
         run: |
-          BOT_NAME=${{ github.event.inputs.botName || "bot" }}
-          echo "Starting bot: $BOT_NAME"
-          node src/$BOT_NAME.js
+          node src/bot.js
