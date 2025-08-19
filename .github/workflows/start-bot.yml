@@ -30,4 +30,7 @@ jobs:
           SERVER_VERSION: ${{ secrets.SERVER_VERSION }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           WEB_PORT: ${{ secrets.WEB_PORT }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_USER: ${{ secrets.GH_USER }}
+          GH_EMAIL: ${{ secrets.GH_EMAIL }}
         run: node src/bot.js
