@@ -1,0 +1,25 @@
+name: Start Minecraft Bot
+
+on:
+  workflow_dispatch:   # 手動で起動可能
+  push:
+    branches:
+      - main
+
+jobs:
+  start-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start Bot
+        run: node src/bot.js
