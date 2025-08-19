@@ -1,0 +1,38 @@
+name: Auto Minecraft Bot
+
+# 5分ごとに実行
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start Bot
+        env:
+          HOST: ${{ secrets.HOST }}
+          PORT: ${{ secrets.PORT }}
+          BOT_NAME: ${{ secrets.BOT_NAME }}
+          SERVER_VERSION: ${{ secrets.SERVER_VERSION }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          WEB_PORT: ${{ secrets.WEB_PORT }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_USER: ${{ secrets.GH_USER }}
+          GH_EMAIL: ${{ secrets.GH_EMAIL }}
+        run: |
+          echo "[INFO] Bot起動開始"
+          node src/bot.js
