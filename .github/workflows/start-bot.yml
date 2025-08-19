@@ -1,0 +1,29 @@
+name: Start Minecraft Bot
+
+on:
+  push:
+    branches:
+      - main   # main ブランチにPushされたとき
+  workflow_dispatch:  # 手動で起動も可能
+
+jobs:
+  start-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start Bot
+        run: |
+          BOT_NAME=${{ github.event.inputs.botName || "bot" }}
+          echo "Starting bot: $BOT_NAME"
+          node src/$BOT_NAME.js
